@@ -1,0 +1,85 @@
+{% extends 'music/base.html' %}
+{% block title %}Album Details {% endblock %}
+
+{% block body %}
+<div class="container-fluid songs-container">
+    <div class="row">
+        <!--left Album info-->
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'music:details' album.id %}">
+                        <img alt="" class="img.responsive" height="900" src="{{ album.album_logo.url }}" width="800">
+                    </a>
+                    <h1>{{ album.album_title }}</h1>
+                    <h2>{{ album.genre }}</h2>
+                    <h2>{{ album.artist }}</h2>
+                </div>
+            </div>
+        </div>
+        <!--Right Song info-->
+        <div class="col-sm-8 col-md-9">
+            <u1 class="nav nav-pills" style="margin-bottom:10px;">
+                <li class="active"><a href="#i2">View All Songs</a></li>
+            </u1>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="songs">
+                        <thread>
+                            <tr>
+                                <th style="background-color:white;color:green;padding:5px;text-align:center">Title</th>
+                                <th style="background-color:white;color:green;padding:5px;text-align:center">Audio
+                                    File
+                                </th>
+                                <th style="background-color:white;color:green;padding:5px;text-align:center">Actions
+                                </th>
+                            </tr>
+                        </thread>
+                        {% for song in album.song_set.all %}
+                        <tr id="i2">
+                            <td style="color:blue;">{{ song.song_title }}</td>
+                            <br>
+                            <td style="color:tomato">{{ song.file_type }}</td>
+                            <br>
+                            <td>
+                                <a class="btn btn-default btn-sm btn-favorite" href="#" title="Make Favorite"></a>
+                                <svg class="bi bi-heart-fill" fill="currentColor" height="1em" style="color:red;"
+                                     viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path clip-rule="evenodd"
+                                          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
+                                          fill-rule="evenodd"/>
+                                </svg>
+                                <button class="btn btn-default btn-sm" title="Play" type="submit"></button>
+                                >
+                                <svg class="bi bi-play-fill" fill="currentColor" height="1em" style="color:white;"
+                                     viewBox="0 0 16 16" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.596 8.697l-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 010 1.393z"/>
+                                </svg>
+                                <button class="btn btn-default btn-sm" title="Download" type="submit"></button>
+                                <svg class="bi bi-download" fill="currentColor" height="1em"
+                                     style="color:rgb(120,85,200)" viewBox="0 0 16 16" width="1em"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path clip-rule="evenodd"
+                                          d="M.5 8a.5.5 0 01.5.5V12a1 1 0 001 1h12a1 1 0 001-1V8.5a.5.5 0 011 0V12a2 2 0 01-2 2H2a2 2 0 01-2-2V8.5A.5.5 0 01.5 8z"
+                                          fill-rule="evenodd"/>
+                                    <path clip-rule="evenodd"
+                                          d="M5 7.5a.5.5 0 01.707 0L8 9.793 10.293 7.5a.5.5 0 11.707.707l-2.646 2.647a.5.5 0 01-.708 0L5 8.207A.5.5 0 015 7.5z"
+                                          fill-rule="evenodd"/>
+                                    <path clip-rule="evenodd" d="M8 1a.5.5 0 01.5.5v8a.5.5 0 01-1 0v-8A.5.5 0 018 1z"
+                                          fill-rule="evenodd"/>
+                                </svg>
+                            </td>
+                            <br>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
